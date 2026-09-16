@@ -1,0 +1,130 @@
+%
+%
+% Author: Cembalo Gabriele
+% Personal Page: http://gcembalo.github.io
+% License: MIT
+%
+% For errors, suggestions, or improvements, please contact:
+% Email: g70362643@gmail.com
+%
+% Version: 1.1
+%
+%
+% This is a basic exercis sheet document, which is based on tutoring session
+% I gave during my university studies.
+% 
+% To complete your beamer you can delete my content and add yours. Be careful
+% to not delete some LaTeX command or settings. You can find everything in 
+% "main.tex" file. There you can modify all the specific information 
+% for your course.
+%
+%
+
+\documentclass[a4paper]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                    Pacchetti                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Definzioni di base
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+
+% Pacchetti fondamentali di matematica e simboli
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{slashed}
+\usepackage{bm}
+\usepackage{slashed}
+\usepackage[separate-uncertainty=true]{siunitx}
+
+% Pacchetti di formattazione
+\usepackage{geometry}
+\geometry{left=2.cm, top=1.5cm, right=2.cm, bottom=3.cm}
+\usepackage{changepage} % Per utilizzare l'adjustpage
+\usepackage{blindtext}
+%\usepackage{csquotes}
+
+% Pacchetti per i disegni
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{contour} % To fill the vertex (blob)
+\usetikzlibrary{positioning, arrows.meta, decorations.pathmorphing, decorations.markings, angles, quotes}
+\tikzfeynmanset{warn luatex=false}
+
+% fix conflitto SIUNITX / PHYSICS
+\AtBeginDocument{\RenewCommandCopy\qty\SI}
+\ExplSyntaxOn
+    \msg_redirect_name:nnn{siunitx}{physics-pkg}{none}
+\ExplSyntaxOff
+
+% Pacchetto per i riferimenti ipertestuali
+\usepackage{hyperref}
+\hypersetup{colorlinks = true,
+            linkcolor=blue,
+            filecolor=magenta,
+            %urlcolor=cyan,
+            urlcolor=magenta,
+            citecolor=green}
+
+% Comandi nuovi per automazione
+\newcommand{\mail}[1]{\href{mailto:#1}{\texttt{#1}}} % Rende cliccabili le mail
+
+% Comdnado per creare la sezione in automatico
+\newcounter{nesercizio}
+\newcommand{\esercizio}[1]{%
+    \stepcounter{nesercizio}% Incrementa il contatore di 1
+    \subsection*{Esercizio \ntutoraggio.\thenesercizio}% Stampa il valore aggiornato
+    \begin{adjustwidth}{0.7cm}{0.7cm}
+        #1
+    \end{adjustwidth}
+}
+
+% Titolo, autore e data tutoraggio
+\title{\textbf{Tutoraggio \ntutoraggio\ di \corso} \\ \large{Corso di Laurea in \dipartimento}}
+\author{Tutor: \tutor \\ 
+email:  \mail{\indirizzo}}
+\date{\appuntamento}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                              Specifiche del corso                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\corso}{Fisica}
+\newcommand{\dipartimento}{Fisica Teorica}
+\newcommand{\tutor}{Gabriele Cembalo}
+\newcommand{\indirizzo}{g70362643@gmail.com}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                    Tutoraggio                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\ntutoraggio}{\textcolor{red}{numero}}
+\newcommand{\appuntamento}{\textcolor{red}{data}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                    Documento                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+\esercizio{\blindtext}
+
+\esercizio{
+    prova a determinare:
+    \begin{itemize}
+        \item aaa
+        \item bbb
+    \end{itemize}
+}
+
+\end{document}
